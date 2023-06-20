@@ -1,24 +1,46 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                   |
+|--------------------|---------------------|---------------------------|
+| nikcname           | string              | null: false               |
+| email              | string              | null: false               |
+| encrypted_password | string              | null: false, unique: true |
+| firstname          | text                | null: false               |
+| lastname           | text                | null: false               |
+| birthday           | text                | null: false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+* has_many :items
+* has_many :orders
 
-* Configuration
+## items table
 
-* Database creation
+| Column              | Type       | Options                        |
+|---------------------|------------|--------------------------------|
+| product             | string     | null: false                    |
+| category            | text       | null: false                    |
+| price               | text       | null: false                    |
+| seller              | text       | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## orders table
 
-* Deployment instructions
+| Column     | Type       | Options                        |
+|------------|------------|--------------------------------|
+| buyer      | string     | null: false                    |
+| adress     | string     | null: false                    |
+| item       | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- has_one :item
+- belongs_to :user
