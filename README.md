@@ -25,14 +25,19 @@
 | title               | string     | null: false                    |
 | price               | integer    | null: false                    |
 | explanation         | text       | null: false                    |
-| genre               | integer    | null: false                    |
+| genre_id            | integer    | null: false                    |
+| category            | integer    | null: false                    |
+| condition           | integer    | null: false                    |
+| postage             | integer    | null: false                    |
+| municipality        | integer    | null: false                    |
+| prefecures          | integer    | null: false                    |
+| delivery_date       | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :orders
-- belong_to :product
+- has_one :order
 
 ## orders table
 
@@ -48,30 +53,25 @@
 
 ## destinations table
 
-| Column           | Type       | Options                                             |
-|------------------|------------|--------------------------------                     |
-| post_code        | string     | null: false, limit: 8, pattern: '/\A\d{3}-\d{4}\z/' |
-| prefectures      | string     | null: false                                         |
-| municipality     | string     | null: false                                         |
-| address          | string     | null: false                                         |
-| building         | string     |                                                     |
-| telephone_number | string     | null: false, limit: 11, pattern: '/\A\d{10,11}\z/'  |
-| order            | references | null: false, foreign_key: true                      |
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| post_code        | string     | null: false                    |
+| prefectures_id   | integer    | null: false                    |
+| municipality     | string     | null: false                    |
+| address          | string     | null: false                    |
+| building         | string     |                                |
+| telephone_number | string     | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :order
 
-## products table
+ ## products table
 
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
-| category         | string     | null: false                    |
-| condition        | string     | null: false                    |
-| postage          | string     | null: false                    |
-| municipality     | string     | null: false                    |
-| prefecures       | string     | null: false                    |
-| delivery_date    | integer    | null: false                    |
+
 | item             | references | null: false, foreign_key: true |
 
 ### Association
