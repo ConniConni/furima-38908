@@ -9,6 +9,8 @@
 | encrypted_password | string              | null: false,              |
 | firstname          | string              | null: false               |
 | lastname           | string              | null: false               |
+| firstname_kana     | string              | null: false               |
+| lastname_kana      | string              | null: false               |
 | birthday           | date                | null: false               |
 
 ### Association
@@ -20,16 +22,17 @@
 
 | Column              | Type       | Options                        |
 |---------------------|------------|--------------------------------|
-| product             | string     | null: false                    |
+| title               | string     | null: false                    |
 | price               | integer    | null: false                    |
+| explanation         | text       | null: false                    |
 | genre               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :order
-- belong_to :genre
+- has_one :orders
+- belong_to :product
 
 ## orders table
 
@@ -42,7 +45,6 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :address
 
 ## destinations table
 
@@ -58,4 +60,20 @@
 
 ### Association
 
-- belongs_to :address
+- belongs_to :order
+
+## products table
+
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| category         | string     | null: false                    |
+| condition        | string     | null: false                    |
+| postage          | string     | null: false                    |
+| municipality     | string     | null: false                    |
+| prefecures       | string     | null: false                    |
+| delivery_date    | integer    | null: false                    |
+| item             | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :order
