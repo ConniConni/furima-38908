@@ -26,12 +26,11 @@
 | price               | integer    | null: false                    |
 | explanation         | text       | null: false                    |
 | genre_id            | integer    | null: false                    |
-| category            | integer    | null: false                    |
-| condition           | integer    | null: false                    |
-| postage             | integer    | null: false                    |
-| municipality        | integer    | null: false                    |
-| prefecures          | integer    | null: false                    |
-| delivery_date       | integer    | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| postage_id          | integer    | null: false                    |
+| prefecure_id        | integer    | null: false                    |
+| delivery_date_id    | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 ### Association
@@ -50,6 +49,7 @@
 
 - belongs_to :item
 - belongs_to :user
+- has_one :destination
 
 ## destinations table
 
@@ -67,13 +67,3 @@
 
 - belongs_to :order
 
- ## products table
-
-| Column           | Type       | Options                        |
-|------------------|------------|--------------------------------|
-
-| item             | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :order
