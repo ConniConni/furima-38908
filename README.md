@@ -25,7 +25,6 @@
 | title               | string     | null: false                    |
 | price               | integer    | null: false                    |
 | explanation         | text       | null: false                    |
-| genre_id            | integer    | null: false                    |
 | category_id         | integer    | null: false                    |
 | condition_id        | integer    | null: false                    |
 | postage_id          | integer    | null: false                    |
@@ -56,7 +55,7 @@
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
 | post_code        | string     | null: false                    |
-| prefectures_id   | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
 | municipality     | string     | null: false                    |
 | address          | string     | null: false                    |
 | building         | string     |                                |
