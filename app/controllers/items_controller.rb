@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.order != nil
+      render :index
+    end
   end
 
   def update
