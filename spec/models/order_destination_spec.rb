@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe OrderDestination, type: :model do
   before do
     user = FactoryBot.create(:user)
-    item = FactoryBot.create(:item, user: item_user)
+    item = FactoryBot.create(:item)
     @order_destination = FactoryBot.build(:order_destination, user_id: user.id, item_id: item.id)
   end
 
@@ -29,12 +29,12 @@ RSpec.describe OrderDestination, type: :model do
         expect(@order_destination.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
       end
       it "post_codeが全角の場合は登録できない" do
-        @order_destination.post_code = "1234567"
+        @order_destination.post_code = "１２３-４５６７"
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Post code is invalid")
+        expect(@order_destination.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
       end
       it "prefecture_idが空の場合は登録できない" do
-        @order_destination.post_code = ""
+        @order_destination.prefecture_id = ""
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -51,7 +51,7 @@ RSpec.describe OrderDestination, type: :model do
       it "telephone_numberが空の場合は登録できない" do
         @order_destination.telephone_number = ""
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Telephonen umber can't be blank")
+        expect(@order_destination.errors.full_messages).to include("Telephone number can't be blank")
       end
       it "telephone_numberが10桁未満の場合は登録できない" do
         @order_destination.telephone_number = '12345678'
