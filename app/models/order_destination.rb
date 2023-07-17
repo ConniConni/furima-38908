@@ -1,6 +1,6 @@
 class OrderDestination
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id , :municipality, :address, :building, :telephone_number, :item_id, :user_id
+  attr_accessor :post_code, :prefecture_id , :municipality, :address, :building, :telephone_number, :item_id, :user_id, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -10,6 +10,7 @@ class OrderDestination
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
   validates :municipality, presence: true
   validates :address, presence: true
+  validates :token, presence: true
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
