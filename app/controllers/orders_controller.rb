@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   def index
     @order_destination = OrderDestination.new
@@ -8,13 +8,12 @@ class OrdersController < ApplicationController
   def create
      @order_destination = OrderDestination.new(destination_params)
      if @order_destination.valid? 
-        pry_item
+        pay_item
         @order_destination.save
         redirect_to root_path
      else
         render :index
      end
-    end
   end
 
   private
@@ -25,12 +24,12 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id && (@item.order != nil or @item.order == nil)
+    if current_user.id == @item.user_id or @item.order != nil
       redirect_to root_path
+    end
   end
-
-  def pry_item
- 
+  
+  def pay_item
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item.price,  
@@ -38,5 +37,5 @@ class OrdersController < ApplicationController
         currency: 'jpy'               
       )
   end
-  end
+  
 end

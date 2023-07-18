@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :items do
    resources :orders, only: [:index, :create]
   end
-  resources :destinations, only: [:index]
+  resources :destinations, only: [:index, ]
 
 end
