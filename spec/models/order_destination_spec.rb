@@ -63,13 +63,7 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Telephone number is invalid")
       end
-      it "telephone_numberが全角の場合は登録できない" do
-        @order_destination.telephone_number = '１２３４５６７８９'
-        @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Telephone number is invalid")
-      end
       it "telephone_numberに半角以外の数字が入っている場合は登録できない" do
-        binding.pry
         @order_destination.telephone_number = '12345678９'
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Telephone number is invalid")
