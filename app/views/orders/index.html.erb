@@ -34,16 +34,33 @@
     <%= form_with model: @order_destination, url: item_orders_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
     <%# カード情報の入力 %>
-    <div class='form-wrap'>
-       <p>カード番号</p>
+    <div class='form-group'>
+        <div class="form-text-wrap">
+          カード情報
+          <span class="indispensable">必須</span>
+        </div>
       <div id="number-form" class="input-default"></div>
-    </div>
-    <div class='form-wrap'>
-       <p>期限</p>
+         <div class='available-card'>
+          <%= image_tag 'card-visa.gif', class: 'card-logo'%>
+          <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
+          <%= image_tag 'card-jcb.gif', class: 'card-logo'%>
+          <%= image_tag 'card-amex.gif', class: 'card-logo'%>
+        </div>
+      </div>
+    
+     <div class='form-group'>
+        <div class="form-text-wrap">
+           有効期限
+          <span class="indispensable">必須</span>
+        </div>
     <div id="expiry-form" class="input-default"></div>
     </div>
-    <div class='form-wrap'>
-       <p>カード背面4桁もしくは3桁の番号</p>
+    <div class='form-group'>
+        <div class="form-text-wrap">
+          セキュリティーコード
+          <span class="indispensable">必須</span>
+        </div>
+
       <div id="cvc-form" class="input-default"></div>
     </div>
     <%# /カード情報の入力 %>
